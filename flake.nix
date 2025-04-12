@@ -12,11 +12,10 @@
         pname = "autoprompt";
         version = "0.1.0";
         pkgs = nixpkgs.legacyPackages.${system};
-        haskpkgs = pkgs.haskell.packages.ghc;
-        llvmpkgs = pkgs.llvmPackages_latest;
-        autoprompt  = pkgs.runCommand pname
-                                      { preferLocalBuild = true; buildInputs = [ pname ]; }
-                                      '''';
+        ghc = pkgs.haskell.compiler.ghc910;
+        ragha  = pkgs.runCommand pname
+                                 { preferLocalBuild = true; buildInputs = [ pname ]; }
+                                 '''';
         nixConfig.sandbox = "relaxed";
       in {
         packages.default = with import nixpkgs { inherit system; };
@@ -27,10 +26,10 @@
             version = "${version}";
 
             buildInputs = with pkgs; [
+              cabal-install
               cacert
+              ghc
               git
-              haskpkgs.cabal-install
-              haskpkgs.ghc
               zlib
             ];
 
@@ -78,28 +77,26 @@
             libffi
             zlib
           ];
-          # nativeBuildInputs = with pkgs; [
-          #   cacert
-          #   coreutils
-          #   findutils
-          #   fswatch
-          #   ghcid
-          #   git
-          #   gnugrep
-          #   gnumake
-          #   gnused
-          #   haskpkgs.cabal-install
-          #   haskpkgs.cpphs
-          #   haskpkgs.ghc
-          #   haskpkgs.hlint
-          #   llvmpkgs.clangWithLibcAndBasicRtAndLibcxx
-          #   postgresql
-          #   sourceHighlight
-          #   watchexec
-          # ];
+          nativeBuildInputs = with pkgs; [
+            cabal-install
+            cacert
+            coreutils
+            findutils
+            fswatch
+            ghc
+            git
+            gnugrep
+            gnumake
+            gnused
+            hlint
+            postgresql
+            sourceHighlight
+            watchexec
+          ];
           shellHook = ''
             export SHELL=$BASH
             export LANG=en_US.UTF-8
+            export PATH=~/.local/bin:$PATH
             export PS1="ragha|$PS1"
             export VERSION=$(git rev-parse HEAD)
           '';

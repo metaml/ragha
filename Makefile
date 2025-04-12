@@ -10,7 +10,7 @@ build: # lint (breaks on multiple readers) ## build
 	cabal build --jobs='$$ncpus' | source-highlight --src-lang=haskell --out-format=esc
 
 install: ## install
-	cabal install --enable-prof --install-method=copy --overwrite-policy=always --installdir=bin exe:autoprompt
+	cabal install --enable-profiling --install-method=copy --overwrite-policy=always --installdir=bin exe:ragha
 
 test: ## test
 	cabal test
@@ -35,10 +35,10 @@ image: ## nix build docker image
 	nix build --impure --verbose --option sandbox relaxed .#docker
 	nix build --impure --verbose --option sandbox relaxed .#autoprompt
 
-update-cabal: ## cabal update
+cabal-update: ## cabal update
 	cabal update
 
-update-flake: ## flake update
+flake-update: ## flake update
 	nix flake update
 
 run: ## run app
