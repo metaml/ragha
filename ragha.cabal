@@ -1,0 +1,94 @@
+cabal-version: 3.12
+name:          ragha
+version:       0.1.0.0
+synopsis:      autoprompt
+author:        ml
+maintainer:    metaml@gmail.com
+build-type:    Simple
+
+common warnings
+    ghc-options: -Wall -O2 -threaded
+
+library
+  exposed-modules: Etc.Ragha
+                 , Etc.Context
+                 , Etc.Init
+  hs-source-dirs:     src
+  ghc-options:        -O2 -Wall -threaded -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs
+  default-language:   Haskell2010
+  default-extensions: BangPatterns
+                    , BlockArguments
+                    , ConstraintKinds
+                    , DataKinds
+                    , DeriveAnyClass
+                    , DeriveFunctor
+                    , DeriveGeneric
+                    , DerivingVia
+                    , DuplicateRecordFields
+                    , FlexibleContexts
+                    , FlexibleInstances
+                    , ForeignFunctionInterface
+                    , GADTs
+                    , GeneralizedNewtypeDeriving
+                    , ImpredicativeTypes
+                    , KindSignatures
+                    , LambdaCase
+                    , MultiParamTypeClasses
+                    , OverloadedLabels
+                    , OverloadedStrings
+                    , OverloadedRecordDot
+                    , PatternSynonyms
+                    , PolyKinds
+                    , QuasiQuotes
+                    , ScopedTypeVariables
+                    , StandaloneDeriving
+                    , StrictData
+                    , TemplateHaskell
+                    , TupleSections
+                    , TypeApplications
+                    , TypeFamilies
+                    , TypeOperators
+                    , TypeSynonymInstances
+                    , UndecidableInstances
+                    , ViewPatterns
+  build-depends:      base
+                    , aeson
+                    , bytestring
+                    , beam-core
+                    , beam-migrate
+                    , beam-postgres
+                    , exceptions
+                    , filepath
+                    , http-client
+                    , http-client-tls
+                    , openai
+                    , optics-core
+                    , optparse-applicative
+                    , postgresql-simple
+                    , servant
+                    , servant-auth
+                    , servant-client
+                    , servant-client-core
+                    , servant-server
+                    , streamly-core
+                    , strings
+                    , text
+                    , text-conversions
+                    , time
+                    , uuid
+                    , vector
+                    , wai
+                    , warp
+                    , wai-cors
+                    , warp-tls
+
+executable ragha
+    import:             warnings
+    main-is:            ragha.hs
+    ghc-options:        -O2 -Wall -threaded -rtsopts -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively  -fprof-auto -fprof-cafs
+    build-depends:      base
+                      , ragha
+                      , text
+    hs-source-dirs:     app
+    default-language:   Haskell2010
+    default-extensions: OverloadedStrings

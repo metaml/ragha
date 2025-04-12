@@ -1,0 +1,14 @@
+**~
+*.py[cod]
+.DS_Store
+__pycache__/
+.ghci
+bin
+dist-newstyle
+logs
+packages
+result
+spy/data/
+static/index.js
+store
+tmp/**
