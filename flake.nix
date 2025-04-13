@@ -18,41 +18,38 @@
                                  '''';
         nixConfig.sandbox = "relaxed";
       in {
+        defaultPackage = self.packages.${system}.default;
         packages.default = with import nixpkgs { inherit system; };
           stdenv.mkDerivation {
             __noChroot = true;
             name = "${pname}";
             src = self;
             version = "${version}";
-
-            buildInputs = with pkgs; [
+            buildinputs = with pkgs; [
+              zlib
+            ];
+            nativeinputs = with pkgs; [
               cabal-install
               cacert
               ghc
               git
-              zlib
             ];
-
             buildPhase = ''
               export HOME=$TMP
               export CABAL_DIR=$TMP
               cabal update --verbose
               mkdir -p $out/bin
             '';
-
             installPhase = ''
               export HOME=$TMP
               export CABAL_DIR=$HOME
               cabal install --install-method=copy --overwrite-policy=always --installdir=$out/bin exe:autoprompt
             '';
           };
-        defaultPackage = self.packages.${system}.default;
-
         packages.docker = pkgs.dockerTools.buildImage {
           name = "${pname}";
           tag = "latest";
           created = "now";
-
           copyToRoot = pkgs.buildEnv {
             name = "${pname}";
             paths = with pkgs; [ cacert
@@ -60,7 +57,6 @@
                                ];
             pathsToLink = [ "/bin/${pname}" ];
           };
-
           config = {
             WorkingDir = "/";
             Env = [
@@ -71,7 +67,6 @@
             EntryPoint = [ "/bin/${pname}" ];
           };
         };
-
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             libffi
