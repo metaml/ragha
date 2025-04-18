@@ -18,6 +18,9 @@ test: ## test
 lint: ## lint
 	hlint app src
 
+repl: ## repl
+	cabal repl
+
 clean: ## clean
 	cabal clean
 	find . -name '*~' -o -name '#*' | xargs rm -f
@@ -43,6 +46,9 @@ flake-update: ## flake update
 
 run: ## run app
 	cabal run ragha
+
+lint: ## run hlint
+	hlint --git
 
 help: ## help
 	-@grep --extended-regexp '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \

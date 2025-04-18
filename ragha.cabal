@@ -10,9 +10,13 @@ common warnings
     ghc-options: -Wall -O2 -threaded
 
 library
-  exposed-modules: Etc.Ragha
+  exposed-modules: Entity.Account
+                 , Etc.Ragha
                  , Etc.Context
                  , Etc.Init
+                 , Datum.DukDukGo
+                 , Datum.OpenFda
+
   hs-source-dirs:     src
   ghc-options:        -O2 -Wall -threaded -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs
   default-language:   Haskell2010
@@ -59,8 +63,10 @@ library
                     , beam-postgres
                     , exceptions
                     , filepath
+                    , haxl
                     , http-client
                     , http-client-tls
+                    , http-media
                     , openai
                     , optics-core
                     , optparse-applicative

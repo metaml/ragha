@@ -91,7 +91,6 @@
           shellHook = ''
             export SHELL=$BASH
             export LANG=en_US.UTF-8
-            export PATH=~/.local/bin:$PATH
             export PS1="ragha|$PS1"
             export VERSION=$(git rev-parse HEAD)
           '';
