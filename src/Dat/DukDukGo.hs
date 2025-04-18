@@ -1,4 +1,4 @@
-module Datum.DukDukGo where
+module Dat.DukDukGo where
 
 import Data.Aeson (FromJSON, Object, ToJSON, encode, eitherDecode)
 import Data.Proxy (Proxy(..))

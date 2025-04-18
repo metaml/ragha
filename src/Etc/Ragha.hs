@@ -1,6 +1,6 @@
 module Etc.Ragha where
 
-import Datum.DukDukGo
+import Dat.DukDukGo
 
 run :: IO ()
 run = query "haskell" >>= \case
