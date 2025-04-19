@@ -18,7 +18,7 @@ library
                  , Dat.OpenFda
 
   hs-source-dirs:     src
-  ghc-options:        -O2 -Wall -threaded -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs
+  ghc-options:        -O2 -Wall -threaded -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs -fasm
   default-language:   Haskell2010
   default-extensions: BangPatterns
                     , BlockArguments
@@ -91,7 +91,7 @@ library
 executable ragha
     import:             warnings
     main-is:            ragha.hs
-    ghc-options:        -O2 -Wall -threaded -rtsopts -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively  -fprof-auto -fprof-cafs
+    ghc-options:        -O2 -Wall -threaded -rtsopts -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively  -fprof-auto -fprof-cafs -fasm
     build-depends:      base
                       , ragha
                       , text

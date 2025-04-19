@@ -1,5 +1,5 @@
 {
-  description = "autoprompt: llm augmented memory";
+  description = "ragha: llm augmented memory";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -9,7 +9,7 @@
   outputs = { self, nixpkgs, utils }:
     utils.lib.eachDefaultSystem (system:
       let
-        pname = "autoprompt";
+        pname = "ragha";
         version = "0.1.0";
         pkgs = nixpkgs.legacyPackages.${system};
         ghc = pkgs.haskell.compiler.ghc910;
