@@ -4,4 +4,4 @@ import Etc.Ragha (run)
 
 -- @todo: daemonize this process
 main :: IO ()
-main = run
+main = let threads = 8 in run threads

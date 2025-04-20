@@ -45,6 +45,7 @@ library
                     , OverloadedLabels
                     , OverloadedStrings
                     , OverloadedRecordDot
+                    , PartialTypeSignatures
                     , PatternSynonyms
                     , PolyKinds
                     , QuasiQuotes
