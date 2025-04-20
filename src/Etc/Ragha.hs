@@ -15,5 +15,5 @@ run threads = do
   env <- initEnv state () :: IO (Env () ())
   -- runs concurrently courtesy of Haxl 😃
   r <- runHaxl env $ mapM search ["haskell", "purescript"]
-  putStrLn "Oh, shit! Is it working?"
+  putStrLn "😃😃😃"
   print r
