@@ -13,7 +13,8 @@ run threads = do
   let state = stateSet stateDuck stateEmpty
   -- type sig. needed otherwise "ambiguous type variable ‘w0’ arising from a use of ‘initEnv’"
   env <- initEnv state () :: IO (Env () ())
-  -- runs concurrently courtesy of Haxl 😃
-  r <- runHaxl env $ mapM search ["haskell", "purescript"]
-  putStrLn "😃😃😃"
-  print r
+  -- runs concurrently courtesy of Haxl
+  runHaxl env (mapM search ["haskell", "purescript"]) >>= \r -> putStrLn ("😃😃😃" <> (show r))
+  -- caching too courtexy of Haxl
+  runHaxl env (mapM search ["haskell", "purescript"]) >>= print
+  runHaxl env (mapM search ["haskell", "purescript"]) >>= print
