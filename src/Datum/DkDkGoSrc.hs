@@ -10,8 +10,7 @@ import Haxl.Core ( BlockedFetch(..), DataSource(..), DataSourceName(..)
                  , Flags, PerformFetch(..), State, StateKey, ShowP(..)
                  , putFailure, putSuccess
                  )
-import Network.HTTP.Client (Manager, newManager)
-import Network.HTTP.Client.TLS (tlsManagerSettings)
+import Network.HTTP.Client (Manager)
 import Servant.Client.Core (ClientError)
 import qualified Datum.DkDkGoApi as Api
 

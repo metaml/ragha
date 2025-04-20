@@ -11,7 +11,7 @@ run threads = do
   manager <- newManager tlsManagerSettings
   stateDuck <- initGlobalState threads manager
   let state = stateSet stateDuck stateEmpty
-  -- type sig. needed otherwise Ambiguous type variable ‘w0’ arising from a use of ‘initEnv’
+  -- type sig. needed otherwise "ambiguous type variable ‘w0’ arising from a use of ‘initEnv’"
   env <- initEnv state () :: IO (Env () ())
   -- runs concurrently courtesy of Haxl 😃
   r <- runHaxl env $ mapM search ["haskell", "purescript"]
