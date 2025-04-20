@@ -1,9 +1,9 @@
-module Dat.DukDukGo where
+module Datum.DkDkGoApi where
 
 import Data.Aeson (FromJSON, Object, ToJSON, encode, eitherDecode)
 import Data.Proxy (Proxy(..))
 import Data.Text (Text)
-import Network.HTTP.Client (newManager)
+import Network.HTTP.Client (Manager, newManager)
 import Network.HTTP.Client.TLS (tlsManagerSettings)
 import Network.HTTP.Media ((//))
 import Servant.Client ( BaseUrl(..), ClientM, Scheme(..)
@@ -49,8 +49,12 @@ search = client dkdkGoApi
 
 query :: Query -> IO (Either ClientError Body)
 query q = do
+  mng <- newManager tlsManagerSettings
+  query' mng q
+
+query' :: Manager -> Query -> IO (Either ClientError Body)
+query' mng q = do
   let url  = "api.duckduckgo.com"
       port = 443
       baseUrl = BaseUrl Https url port ""
-  manager <- newManager tlsManagerSettings
-  runClientM (search (Just q) (Just "json") (Just 0) (Just 1) (Just 1)) (mkClientEnv manager baseUrl)
+  runClientM (search (Just q) (Just "json") (Just 0) (Just 1) (Just 1)) (mkClientEnv mng baseUrl)

@@ -1,4 +1,4 @@
-module Dat.OpenFda where
+module Datum.OpenFdaApi where
 
 import Data.Aeson (Object)
 import Data.Proxy (Proxy(..))

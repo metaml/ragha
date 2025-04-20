@@ -14,8 +14,11 @@ library
                  , Etc.Ragha
                  , Etc.Context
                  , Etc.Init
-                 , Dat.DukDukGo
-                 , Dat.OpenFda
+                 , Datum.DkDkGo
+                 , Datum.DkDkGoApi
+                 , Datum.DkDkGoSrc
+                 , Datum.OpenFdaApi
+                 , Datum.OpenFdaSrc
 
   hs-source-dirs:     src
   ghc-options:        -O2 -Wall -threaded -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs -fasm
@@ -27,6 +30,7 @@ library
                     , DeriveAnyClass
                     , DeriveFunctor
                     , DeriveGeneric
+                    , DeriveDataTypeable
                     , DerivingVia
                     , DuplicateRecordFields
                     , FlexibleContexts
@@ -44,6 +48,7 @@ library
                     , PatternSynonyms
                     , PolyKinds
                     , QuasiQuotes
+                    , RecordWildCards
                     , ScopedTypeVariables
                     , StandaloneDeriving
                     , StrictData
@@ -57,12 +62,14 @@ library
                     , ViewPatterns
   build-depends:      base
                     , aeson
+                    , async
                     , bytestring
                     , beam-core
                     , beam-migrate
                     , beam-postgres
                     , exceptions
                     , filepath
+                    , hashable
                     , haxl
                     , http-client
                     , http-client-tls
@@ -71,6 +78,7 @@ library
                     , optics-core
                     , optparse-applicative
                     , postgresql-simple
+                    , resourcet
                     , servant
                     , servant-auth
                     , servant-client
