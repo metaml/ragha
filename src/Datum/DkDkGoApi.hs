@@ -10,7 +10,7 @@ import Servant.Client ( BaseUrl(..), ClientM, Scheme(..)
                       , client, mkClientEnv, runClientM
                       )
 import Servant.Client.Core (ClientError)
-import Servant.API ((:>), Accept(..), Get, JSON, MimeUnrender, Post, QueryParam)
+import Servant.API ((:>), Accept(..), Get, JSON, MimeUnrender, QueryParam)
 import Servant.API.ContentTypes (MimeRender(..), MimeUnrender(..))
 
 -- api.duckduckgo.com's content-type="application/x-javascript"
