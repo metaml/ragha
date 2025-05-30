@@ -5,7 +5,6 @@ import Control.Concurrent.QSem (QSem, newQSem, signalQSem, waitQSem)
 import Control.Exception (bracket_)
 import Control.Monad (void)
 import Data.Hashable (Hashable, hashWithSalt)
-import Data.Typeable
 import Haxl.Core ( BlockedFetch(..), DataSource(..), DataSourceName(..)
                  , Flags, PerformFetch(..), State, StateKey, ShowP(..)
                  , putFailure, putSuccess
@@ -18,7 +17,6 @@ type Threads = Int
 
 data QueryReq a where
   Query :: Api.Query -> QueryReq Api.Body
-  deriving Typeable
 
 deriving instance Eq (QueryReq a)
 deriving instance Show (QueryReq a)
