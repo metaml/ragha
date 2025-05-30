@@ -12,7 +12,7 @@
         pname = "ragha";
         version = "0.1.0";
         pkgs = nixpkgs.legacyPackages.${system};
-        ghc = pkgs.haskell.compiler.ghc910;
+        ghc = pkgs.haskell.compiler.ghc912;
         ragha  = pkgs.runCommand pname
                                  { preferLocalBuild = true; buildInputs = [ pname ]; }
                                  '''';
@@ -77,13 +77,14 @@
             cacert
             coreutils
             findutils
-            fswatch
             ghc
             git
             gnugrep
             gnumake
             gnused
             hlint
+            libpq
+            pkg-config
             postgresql
             sourceHighlight
             watchexec

@@ -1,4 +1,4 @@
-cabal-version: 3.12
+cabal-version: 3.14
 name:          ragha
 version:       0.1.0.0
 synopsis:      autoprompt
@@ -45,6 +45,7 @@ library
                     , OverloadedLabels
                     , OverloadedStrings
                     , OverloadedRecordDot
+                    , OverloadedRecordUpdate
                     , PartialTypeSignatures
                     , PatternSynonyms
                     , PolyKinds
@@ -64,38 +65,38 @@ library
   build-depends:      base
                     , aeson
                     , async
-                    , bytestring
                     , beam-core
                     , beam-migrate
                     , beam-postgres
-                    , exceptions
-                    , filepath
+                    -- , bytestring
+                    -- , exceptions
+                    -- , filepath
                     , hashable
                     , haxl
                     , http-client
                     , http-client-tls
                     , http-media
-                    , openai
-                    , optics-core
-                    , optparse-applicative
-                    , postgresql-simple
-                    , resourcet
+                    -- , openai
+                    -- , optics-core
+                    -- , optparse-applicative
+                    -- , postgresql-simple
+                    -- , resourcet
                     , servant
-                    , servant-auth
+                    -- , servant-auth
                     , servant-client
                     , servant-client-core
-                    , servant-server
-                    , streamly-core
-                    , strings
+                    -- , servant-server
+                    -- , streamly-core
+                    -- , strings
                     , text
-                    , text-conversions
+                    -- , text-conversions
                     , time
-                    , uuid
-                    , vector
-                    , wai
-                    , warp
-                    , wai-cors
-                    , warp-tls
+                    -- , uuid
+                    -- , vector
+                    -- , wai
+                    -- , warp
+                    -- , wai-cors
+                    -- , warp-tls
 
 executable ragha
     import:             warnings

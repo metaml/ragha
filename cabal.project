@@ -1,1 +1,3 @@
 packages: .
+allow-newer: postgresql-simple:base
+           , postgresql-simple:template-haskell
