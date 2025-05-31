@@ -17,6 +17,7 @@ library
                  , Datum.DkDkGo
                  , Datum.DkDkGoApi
                  , Datum.DkDkGoSrc
+                 , Datum.OpenFda
                  , Datum.OpenFdaApi
                  , Datum.OpenFdaSrc
 

@@ -3,7 +3,7 @@ module Datum.OpenFdaApi where
 import Data.Aeson (Object)
 import Data.Proxy (Proxy(..))
 import Data.Text (Text)
-import Network.HTTP.Client (newManager)
+import Network.HTTP.Client (Manager, newManager)
 import Network.HTTP.Client.TLS (tlsManagerSettings)
 import Servant.Client ( BaseUrl(..), ClientM, Scheme(..)
                       , client, mkClientEnv, runClientM
@@ -30,11 +30,10 @@ search = client openFdaApi
 
 -- works: ghci> query
 --        Right (fromList [("meta",Object ...
-query :: Limit -> IO (Either ClientError Body)
-query l = do
+query :: Manager -> Limit -> IO (Either ClientError Body)
+query mng lim = do
   let url  = "api.fda.gov"
       port = 443
       baseUrl = BaseUrl Https url port "food"
       q = Just "date_started:[20240101 TO 20251231]"
-  manager <- newManager tlsManagerSettings
-  runClientM (search q (Just l)) (mkClientEnv manager baseUrl)
+  runClientM (search q (Just lim)) (mkClientEnv mng baseUrl)
