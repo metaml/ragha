@@ -10,7 +10,7 @@ build: # lint (breaks on multiple readers) ## build
 	cabal build --jobs='$$ncpus' | source-highlight --src-lang=haskell --out-format=esc
 
 install: ## install
-	cabal install --enable-profiling --install-method=copy --overwrite-policy=always --installdir=bin exe:ragha
+	cabal install --enable-profiling --install-method=copy --overwrite-policy=always --installdir=bin exe:bot
 
 test: ## test
 	cabal test
@@ -38,6 +38,8 @@ image: ## nix build docker image
 	nix build --impure --verbose --option sandbox relaxed .#docker
 	nix build --impure --verbose --option sandbox relaxed .#autoprompt
 
+dev-update: flake-update cabal-update ## update dev
+
 cabal-update: ## cabal update
 	cabal update
 
@@ -45,7 +47,10 @@ flake-update: ## flake update
 	nix flake update
 
 run: ## run app
-	cabal run ragha
+	cabal run dot
+
+python-pkgs: ## install packages from requirements.txt
+	pip install -r requirements.txt
 
 help: ## help
 	-@grep --extended-regexp '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) \

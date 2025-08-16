@@ -13,6 +13,8 @@
         version = "0.1.0";
         pkgs = nixpkgs.legacyPackages.${system};
         ghc = pkgs.haskell.compiler.ghc912;
+        python = pkgs.python3;
+        python-pkgs = pkgs.python3Packages;
         ragha  = pkgs.runCommand pname
                                  { preferLocalBuild = true; buildInputs = [ pname ]; }
                                  '''';
@@ -86,6 +88,8 @@
             libpq
             pkg-config
             postgresql
+            python
+            python-pkgs.pip
             sourceHighlight
             watchexec
           ];
@@ -94,8 +98,13 @@
             export LANG=en_US.UTF-8
             export PS1="ragha|$PS1"
             export VERSION=$(git rev-parse HEAD)
+            export PIP_PREFIX=$(pwd)/venv/pypy
+            export PYTHONPATH=$(pwd)/app:"$PIP_PREFIX/${python.sitePackages}:$PYTHONPATH"
+            export PATH=$(pwd)/venv/bin:$PATH
+            python -m venv ./venv
+            source ./venv/bin/activate
+            make python-pkgs
           '';
-
         };
         devShell = self.devShells.${system}.default;
       }

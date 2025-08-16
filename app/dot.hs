@@ -1,7 +1,7 @@
 module Main where
 
-import Etc.Ragha (run)
+import Etc.Dot as Dot
 
 -- @todo: daemonize this process
 main :: IO ()
-main = let threads = 8 in run threads
+main = Dot.run threads where threads = 8

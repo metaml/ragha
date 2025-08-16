@@ -1,4 +1,4 @@
-module Etc.Ragha where
+module Etc.Dot where
 
 import Datum.DkDkGoSrc (Threads)
 import Haxl.Core (Env, initEnv, runHaxl, stateSet, stateEmpty)
