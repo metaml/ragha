@@ -28,6 +28,9 @@ clean: ## clean
 clobber: clean ## clobber
 	rm -rf dist-newstyle/*
 
+clobber-venv: ## clobber venv
+	rm -rf venv/*
+
 dev: ## nix develop
 	nix develop
 

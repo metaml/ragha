@@ -86,8 +86,10 @@
             gnused
             hlint
             libpq
+            neo4j
             pkg-config
             postgresql
+            postgresqlPackages.pgvector
             python
             python-pkgs.pip
             sourceHighlight
