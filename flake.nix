@@ -105,7 +105,7 @@
             export PATH=$(pwd)/venv/bin:$PATH
             python -m venv ./venv
             source ./venv/bin/activate
-            make python-pkgs
+           	pip install --quiet --requirement=requirements.txt
           '';
         };
         devShell = self.devShells.${system}.default;

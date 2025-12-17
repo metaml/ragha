@@ -53,7 +53,7 @@ run: ## run app
 	cabal run dot
 
 python-pkgs: ## install packages from requirements.txt
-	pip install -r requirements.txt
+	pip install --requirement=requirements.txt
 
 help: ## help
 	-@grep --extended-regexp '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
