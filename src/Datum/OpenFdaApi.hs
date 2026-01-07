@@ -3,8 +3,7 @@ module Datum.OpenFdaApi where
 import Data.Aeson (Object)
 import Data.Proxy (Proxy(..))
 import Data.Text (Text)
-import Network.HTTP.Client (Manager, newManager)
-import Network.HTTP.Client.TLS (tlsManagerSettings)
+import Network.HTTP.Client (Manager)
 import Servant.Client ( BaseUrl(..), ClientM, Scheme(..)
                       , client, mkClientEnv, runClientM
                       )
