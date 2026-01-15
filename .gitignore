@@ -1,10 +1,10 @@
-**~
 **/#*
 **/.#*
+**~
 *.py[cod]
 .DS_Store
-__pycache__/
 .ghci
+__pycache__/
 bin
 dist-newstyle
 logs
