@@ -1,5 +1,8 @@
 .DEFAULT_GOAL = help
 
+db-migrate: ## db migration
+	source ./db-creds && cd schema && cabal run mig
+
 db-start: ## start dev database
 	pg_ctl --pgdata=data --log=/tmp/ragha-db.log start
 

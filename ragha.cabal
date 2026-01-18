@@ -1,4 +1,4 @@
-cabal-version: 3.14
+cabal-version: 3.16
 name:          ragha
 version:       0.1.0.0
 synopsis:      autoprompt
@@ -10,7 +10,8 @@ common warnings
     ghc-options: -Wall -O2 -threaded
 
 library
-  exposed-modules: Entity.Account
+  exposed-modules: Db.Db
+                 , Db.Entity.Account
                  , Etc.Context
                  , Etc.Dot
                  , Etc.Init
@@ -93,7 +94,7 @@ library
                     , text
                     -- , text-conversions
                     , time
-                    -- , uuid
+                    , uuid
                     -- , vector
                     -- , wai
                     -- , warp
@@ -109,4 +110,17 @@ executable dot
                       , text
     hs-source-dirs:     app
     default-language:   Haskell2010
+
+executable mig
+    import:             warnings
+    main-is:            mig.hs
+    ghc-options:        -O2 -Wall -threaded -rtsopts -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs -fasm
     default-extensions: OverloadedStrings
+                      , OverloadedRecordDot
+    build-depends:      base
+                      , bytestring
+                      , ragha
+                      , postgresql-migration
+                      , postgresql-simple
+    hs-source-dirs:     app
+    default-language:   Haskell2010

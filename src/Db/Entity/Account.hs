@@ -1,8 +1,9 @@
-module Entity.Account where
+module Db.Entity.Account where
 
 import Data.Int (Int32)
 import Data.Text (Text)
 import Data.Time (UTCTime)
+import Data.UUID (UUID)
 import Database.Beam (Identity)
 import Database.Beam.Schema (Beamable, Columnar, PrimaryKey, Table (primaryKey))
 import GHC.Generics (Generic)
@@ -10,9 +11,8 @@ import GHC.Generics (Generic)
 data AccountT f = AccountT { _id         :: Columnar f Int32
                            , _email      :: Columnar f Text
                            , _password   :: Columnar f Text
-                           , _firstname  :: Columnar f Text
-                           , _lastname   :: Columnar f Text
                            , _active     :: Columnar f Bool
+                           , _guid       :: Columnar f UUID
                            , _created_at :: Columnar f UTCTime
                            } deriving (Beamable, Generic)
 
