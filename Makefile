@@ -60,6 +60,9 @@ help: ## help
 	| sed 's/^Makefile://1' \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-18s\033[0m %s\n", $$1, $$2}'
 
+psql: ## connect to dev db
+	source etc/db/db-creds && psql
+
 ssl-cert: KEY=etc/ssl/key.pem
 ssl-cert: CSR=etc/ssl/server.csr
 ssl-cert: CERT=etc/ssl/cert.pem

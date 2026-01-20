@@ -13,20 +13,20 @@ db-init: ## init postgresql for dev
 	source ./db-creds \
 	&& echo $$PGPASSWORD > db-password \
 	&& initdb \
-		--username="$$PGUSER" \
-		--encoding=UTF8 \
-		--locale=en_US.UTF-8 \
-		--pwfile=db-password \
-		--pgdata=data
+		 --username="$$PGUSER" \
+	 	 --encoding=UTF8 \
+		 --locale=en_US.UTF-8 \
+		 --pwfile=db-password \
+		 --pgdata=data
 
 db-create: ## create the DB
-	source ./db-creds && \
-	createdb $(DB) \
-		--template=template0 \
-		--owner=$$PGUSER \
-		--username="$$PGUSER" \
-		--encoding=UTF8 \
-		--locale=en_US.UTF-8
+	source ./db-creds \
+	&& createdb $(DB) \
+		 --template=template0 \
+		 --owner=$$PGUSER \
+		 --username="$$PGUSER" \
+		 --encoding=UTF8 \
+		 --locale=en_US.UTF-8
 
 dot-db-creds: PGPASSWORD=$(shell cat /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c32)
 dot-db-creds: ## create a db-creds file
