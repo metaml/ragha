@@ -12,15 +12,16 @@ common warnings
 library
   exposed-modules: Db.Db
                  , Db.Entity.Account
+                 , Db.Entity.Journal
                  , Etc.Context
                  , Etc.Dot
                  , Etc.Init
-                 , Datum.DkDkGo
-                 , Datum.DkDkGoApi
-                 , Datum.DkDkGoSrc
-                 , Datum.OpenFda
-                 , Datum.OpenFdaApi
-                 , Datum.OpenFdaSrc
+                 , Fact.DkDkGo
+                 , Fact.DkDkGoApi
+                 , Fact.DkDkGoSrc
+                 , Fact.OpenFda
+                 , Fact.OpenFdaApi
+                 , Fact.OpenFdaSrc
 
   hs-source-dirs:     src
   ghc-options:        -O2 -Wall -threaded -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs -fasm

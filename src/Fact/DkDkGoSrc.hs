@@ -1,4 +1,4 @@
-module Datum.OpenFdaSrc where
+module Fact.DkDkGoSrc where
 
 import Control.Concurrent.Async (async)
 import Control.Concurrent.QSem (QSem, newQSem, signalQSem, waitQSem)
@@ -11,12 +11,12 @@ import Haxl.Core ( BlockedFetch(..), DataSource(..), DataSourceName(..)
                  )
 import Network.HTTP.Client (Manager)
 import Servant.Client.Core (ClientError)
-import qualified Datum.OpenFdaApi as Api
+import qualified Fact.DkDkGoApi as Api
 
 type Threads = Int
 
 data QueryReq a where
-  Query :: Api.Limit -> QueryReq Api.Body
+  Query :: Api.Query -> QueryReq Api.Body
 
 deriving instance Eq (QueryReq a)
 deriving instance Show (QueryReq a)
@@ -25,8 +25,7 @@ instance ShowP QueryReq where showp = show
 
 -- cache
 instance Hashable (QueryReq a) where
-  hashWithSalt s (Query q) = hashWithSalt s (0 :: Int, q :: Api.Limit)
-  -- the above is caching is wrong with Api.Limit; @todo flesh out the query
+  hashWithSalt s (Query q) = hashWithSalt s (0 :: Int, q :: Api.Query)
 
 instance StateKey QueryReq where
   data State QueryReq = QueryState { manager :: Manager
@@ -34,7 +33,7 @@ instance StateKey QueryReq where
                                    }
 
 instance DataSourceName QueryReq where
-  dataSourceName _ = "OpenFda"
+  dataSourceName _ = "DkDkGo"
 
 instance DataSource u QueryReq where
   fetch = queryFetch
@@ -57,4 +56,4 @@ fetchAsync mng sem (BlockedFetch req rvar) =
       Right res -> putSuccess rvar res
 
 fetchQueryReq :: Manager -> QueryReq a -> IO (Either ClientError a)
-fetchQueryReq mng (Query lim) = Api.query mng lim
+fetchQueryReq mng (Query q) = Api.query' mng q

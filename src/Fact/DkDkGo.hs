@@ -1,8 +1,8 @@
-module Datum.DkDkGo where
+module Fact.DkDkGo where
 
 import Haxl.Core (GenHaxl, dataFetch)
-import qualified Datum.DkDkGoApi as Api
-import qualified Datum.DkDkGoSrc as Src
+import qualified Fact.DkDkGoApi as Api
+import qualified Fact.DkDkGoSrc as Src
 
 -- type Haxl a = GenHaxl () a
 

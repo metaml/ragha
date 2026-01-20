@@ -1,13 +1,13 @@
 module Etc.Dot where
 
-import Datum.DkDkGoSrc (Threads)
+import Fact.DkDkGoSrc (Threads)
 import Haxl.Core (Env, initEnv, runHaxl, stateSet, stateEmpty)
 import Network.HTTP.Client (newManager)
 import Network.HTTP.Client.TLS (tlsManagerSettings)
-import qualified Datum.DkDkGo as Dk
-import qualified Datum.DkDkGoSrc as Dk
-import qualified Datum.OpenFda as Fda
-import qualified Datum.OpenFdaSrc as Fda
+import qualified Fact.DkDkGo as Dk
+import qualified Fact.DkDkGoSrc as Dk
+import qualified Fact.OpenFda as Fda
+import qualified Fact.OpenFdaSrc as Fda
 
 run :: Threads -> IO ()
 run threads = do
