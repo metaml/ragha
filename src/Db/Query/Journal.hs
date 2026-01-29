@@ -14,11 +14,10 @@ type Email = Text
 
 append :: Connection -> Entry -> Email -> IO ()
 append c entry email = do
-  let query = insert (journal raghaDb)
-              $ insertExpressions [ Journal default_
-                                            (val_ entry)
-                                            (val_ email)
-                                            currentTimestamp_
-                                  ]
-  runBeamPostgres c $ runInsert query
-  pure ()
+  let q = insert (journal raghaDb)
+          $ insertExpressions [ Journal default_
+                                (val_ entry)
+                                (val_ email)
+                                currentTimestamp_
+                              ]
+  runBeamPostgres c $ runInsert q
