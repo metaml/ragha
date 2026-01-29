@@ -13,6 +13,7 @@ library
   exposed-modules: Db.Db
                  , Db.Entity.Account
                  , Db.Entity.Journal
+                 , Db.Query.Journal
                  , Etc.Context
                  , Etc.Dot
                  , Etc.Init
@@ -83,7 +84,7 @@ library
                     -- , openai
                     -- , optics-core
                     -- , optparse-applicative
-                    -- , postgresql-simple
+                    , postgresql-simple
                     -- , resourcet
                     , servant
                     -- , servant-auth
@@ -120,8 +121,8 @@ executable mig
                       , OverloadedRecordDot
     build-depends:      base
                       , bytestring
-                      , ragha
                       , postgresql-migration
                       , postgresql-simple
+                      , ragha
     hs-source-dirs:     app
     default-language:   Haskell2010
