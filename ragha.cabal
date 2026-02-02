@@ -10,7 +10,8 @@ common warnings
     ghc-options: -Wall -O2 -threaded
 
 library
-  exposed-modules: Db.Db
+  exposed-modules: Api.Api
+                 , Db.Db
                  , Db.Entity.Account
                  , Db.Entity.Journal
                  , Db.Query.Journal
