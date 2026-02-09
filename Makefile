@@ -50,7 +50,7 @@ flake-update: ## flake update
 	nix flake update
 
 run: ## run app
-	cabal run dot
+	cabal run ragha
 
 python-pkgs: ## install packages from requirements.txt
 	pip install --requirement=requirements.txt

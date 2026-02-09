@@ -10,7 +10,10 @@ common warnings
     ghc-options: -Wall -O2 -threaded
 
 library
-  exposed-modules: Api.Api
+  exposed-modules: Api.Account
+                 , Api.Api
+                 , Api.Journal
+                 , Api.Ping
                  , Db.Db
                  , Db.Entity.Account
                  , Db.Entity.Journal
@@ -18,6 +21,7 @@ library
                  , Etc.Context
                  , Etc.Dot
                  , Etc.Init
+                 , Etc.Ragha
                  , Fact.DkDkGo
                  , Fact.DkDkGoApi
                  , Fact.DkDkGoSrc
@@ -73,7 +77,7 @@ library
                     , beam-core
                     , beam-migrate
                     , beam-postgres
-                    -- , bytestring
+                    , bytestring
                     -- , exceptions
                     -- , filepath
                     , hashable
@@ -82,6 +86,7 @@ library
                     , http-client-tls
                     , http-media
                     , inline-python
+                    , mtl
                     -- , openai
                     -- , optics-core
                     -- , optparse-applicative
@@ -91,7 +96,7 @@ library
                     -- , servant-auth
                     , servant-client
                     , servant-client-core
-                    -- , servant-server
+                    , servant-server
                     -- , streamly-core
                     -- , strings
                     , text
@@ -99,10 +104,10 @@ library
                     , time
                     , uuid
                     -- , vector
-                    -- , wai
-                    -- , warp
-                    -- , wai-cors
-                    -- , warp-tls
+                    , wai
+                    , warp
+                    , wai-cors
+                    , warp-tls
 
 executable dot
     import:             warnings
@@ -125,5 +130,15 @@ executable mig
                       , postgresql-migration
                       , postgresql-simple
                       , ragha
+    hs-source-dirs:     app
+    default-language:   Haskell2010
+
+executable ragha
+    import:             warnings
+    main-is:            ragha.hs
+    ghc-options:        -O2 -Wall -threaded -rtsopts -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-type-defaults -flate-specialise -fspecialise-aggressively -fprof-auto -fprof-cafs -fasm
+    build-depends:      base
+                      , ragha
+                      , text
     hs-source-dirs:     app
     default-language:   Haskell2010
