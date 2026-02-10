@@ -49,8 +49,9 @@ cabal-update: ## cabal update
 flake-update: ## flake update
 	nix flake update
 
+run: BIN ?= ragha
 run: ## run app
-	cabal run ragha
+	cabal run $(BIN)
 
 python-pkgs: ## install packages from requirements.txt
 	pip install --requirement=requirements.txt
