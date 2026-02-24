@@ -86,7 +86,7 @@
             gnused
             hlint
             libpq
-            neo4j
+            nginx
             pkg-config
             postgresql
             postgresqlPackages.pgvector
