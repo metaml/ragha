@@ -3,22 +3,48 @@ module Api.Journal where
 import Data.Aeson (FromJSON, ToJSON)
 import Data.ByteString
 import Data.Text (Text)
+import Data.Time.Clock (UTCTime)
 import GHC.Generics (Generic)
-import Servant.Server ()
+import Servant ( Application, Get, Header, JSON, NamedRoutes, Post, Proxy(..), ReqBody
+               , (:>), (:-), serve
+               )
+import Servant.Server (Handler)
+import Servant.Server.Internal (AsServerT)
 
-newtype Token = Token ByteString
+data Journal = Journal { entry :: Text
+                       , timestamp :: UTCTime
+                       } deriving (Eq, Generic, Show, ToJSON, FromJSON)
 
-data Journal = Journal { entry :: Text }
-  deriving (Eq, Generic, Show, ToJSON, FromJSON)
+newtype Entry = Entry { entry :: Text
+                            } deriving (Eq, Generic, Show, ToJSON, FromJSON)
 
+data List = List { page    :: Int
+                 , entries :: Int
+                 } deriving (Eq, Generic, Show, ToJSON, FromJSON)
 
+data JournalApi mode = JournalApi
+  { append :: mode :- "append" :> ReqBody '[JSON] Entry :> Post '[JSON] Journal
+  , list   :: mode :- "list"   :> ReqBody '[JSON] List  :> Post '[JSON] [Journal]
+  } deriving Generic
 
--- type JournalApi = Header "Authorization" Token :>
---                   ( "append" :>
+journalApi :: JournalApi (AsServerT Handler)
+journalApi = JournalApi
+  { append = append'
+  , list   = list'
+  }
 
--- journalServer :: Server JournalApi
--- journalServer = undefined
+append' :: Entry -> Handler Journal
+append' x = do
+  pure $ Journal undefined undefined
 
+list' :: List -> Handler [Journal]
+list' x = do
+  pure [Journal undefined undefined]
+
+type JournalRoutes = NamedRoutes JournalApi
+
+journalApp :: Application
+journalApp = serve (Proxy @JournalRoutes) journalApi
 
 -- import Control.Monad.State.Strict (liftIO)
 -- import Data.Aeson (FromJSON, ToJSON)

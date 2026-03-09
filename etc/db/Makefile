@@ -1,15 +1,15 @@
 .DEFAULT_GOAL = help
 
-db-migrate: ## db migration
+migrate: ## db migration
 	source ./db-creds && cd schema && cabal run mig
 
-db-start: ## start dev database
+start: ## start dev db
 	pg_ctl --pgdata=data --log=/tmp/ragha-db.log start
 
-db-stop: ## start dev database
+stop: ## start dev db
 	pg_ctl --pgdata=data stop
 
-db-init: ## init postgresql for dev
+init: ## init (postgresql) db for dev
 	source ./db-creds \
 	&& echo $$PGPASSWORD > db-password \
 	&& initdb \
@@ -19,17 +19,27 @@ db-init: ## init postgresql for dev
 		 --pwfile=db-password \
 		 --pgdata=data
 
-db-create: ## create the DB
+create: ## create db
 	source ./db-creds \
-	&& createdb $(DB) \
+	&& createdb \
 		 --template=template0 \
 		 --owner=$$PGUSER \
 		 --username="$$PGUSER" \
 		 --encoding=UTF8 \
 		 --locale=en_US.UTF-8
 
-dot-db-creds: PGPASSWORD=$(shell cat /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c32)
-dot-db-creds: ## create a db-creds file
+destroy: ## destroy db (manually remove ./datadir)
+	source ./db-creds \
+	&& dropdb \
+	   --force \
+	   --username=$$PGUSER \
+	   ragha
+
+clobber: ## remove ./datadir
+	rm -rf ./data
+
+db-creds: PGPASSWORD=$(shell cat /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c32)
+db-creds: ## create a db-creds file
 	@if [ ! -f db-creds ]; then \
 		echo "export PGUSER=ragha" > db-creds; \
 		echo "export PGPASSWORD=$(PGPASSWORD)" >> db-creds; \

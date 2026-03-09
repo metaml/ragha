@@ -2,6 +2,7 @@ module Db.Query.Journal where
 
 import Data.Text (Text)
 import Data.Time (LocalTime)
+import Data.UUID (UUID)
 import Database.Beam ( (<.)
                      , all_
                      , currentTimestamp_
@@ -26,12 +27,12 @@ type Entry = Text
 type Email = Text
 type Rows  = Integer
 
-insert :: Connection -> Entry -> Email -> IO ()
-insert c entry email = do
+insert :: Connection -> UUID -> Entry -> IO ()
+insert c guid entry = do
   let q = Db.insert raghaDb.journal
           $ insertExpressions [ Journal default_
+                                        (val_ guid)
                                         (val_ entry)
-                                        (val_ email)
                                         currentTimestamp_
                               ]
   runBeamPostgres c $ runInsert q
