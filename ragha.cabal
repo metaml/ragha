@@ -75,7 +75,6 @@ library
                     , aeson
                     , async
                     , beam-core
-                    , beam-migrate
                     , beam-postgres
                     , bytestring
                     -- , exceptions
@@ -97,7 +96,7 @@ library
                     , servant-client
                     , servant-client-core
                     , servant-server
-                    -- , streamly-core
+                    , streamly-core
                     -- , strings
                     , text
                     -- , text-conversions
