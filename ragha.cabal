@@ -14,6 +14,7 @@ library
                  , Api.Api
                  , Api.Journal
                  , Api.Ping
+                 , Auth.Auth
                  , Db.Db
                  , Db.Entity.Account
                  , Db.Entity.Journal
@@ -85,14 +86,17 @@ library
                     , http-client-tls
                     , http-media
                     , inline-python
+                    , jose
                     , mtl
                     -- , openai
                     -- , optics-core
                     -- , optparse-applicative
                     , postgresql-simple
                     -- , resourcet
+                    , ram
                     , servant
-                    -- , servant-auth
+                    , servant-auth
+                    , servant-auth-server
                     , servant-client
                     , servant-client-core
                     , servant-server

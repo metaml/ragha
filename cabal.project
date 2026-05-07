@@ -1,1 +1,6 @@
 packages: .
+
+source-repository-package
+  type: git
+  location: https://github.com/metaml/hs-jose.git
+  tag: 9098e080d8adb0dfc2bb63bb35d26d79c6b5a870
