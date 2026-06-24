@@ -78,6 +78,7 @@ library
                     , beam-core
                     , beam-postgres
                     , bytestring
+                    , containers
                     -- , exceptions
                     -- , filepath
                     , hashable
